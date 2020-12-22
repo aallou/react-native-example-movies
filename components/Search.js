@@ -25,14 +25,19 @@ class Search extends React.Component {
   _loadMovies() {
     if (this.searchedText) {
       this.setState({ isLoading: true });
-      getMoviesByText(this.searchedText, this.page + 1).then(data => {
-        this.page = data.page;
-        this.totalPages = data.total_pages;
-        this.setState({
-          films: [...this.state.films, ...data.results],
-          isLoading: false
+      getMoviesByText(this.searchedText, this.page + 1)
+        .then(data => {
+          this.page = data.page;
+          this.totalPages = data.total_pages;
+          this.setState({
+            films: [...this.state.films, ...data.results],
+            isLoading: false
+          });
+        })
+        .catch(error => {
+          this.setState({ isLoading: false });
+          console.log("Error..", error);
         });
-      });
     }
   }
 
@@ -96,8 +101,7 @@ class Search extends React.Component {
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1,
-    marginTop: 30
+    flex: 1
   },
   textinput: {
     marginLeft: 5,

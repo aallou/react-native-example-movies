@@ -994,7 +994,7 @@
     "pirates" "^4.0.0"
     "source-map-support" "^0.5.16"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.8.4":
   "integrity" "sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg=="
   "resolved" "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz"
   "version" "7.12.5"
@@ -4200,6 +4200,11 @@
   dependencies:
     "minimist" "^1.2.5"
 
+"moment@^2.29.1":
+  "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
+  "version" "2.29.1"
+
 "ms@2.0.0":
   "integrity" "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g="
   "resolved" "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz"
@@ -4318,6 +4323,11 @@
   "integrity" "sha512-2vPPEi+Z7WqML2jZYddDIfy5Dqb0r2fze2zTxNNknZaFpVHU3mFB3R+DWeJWGVx0ecvttSGlJTI+WG+8Z4cDWw=="
   "resolved" "https://registry.yarnpkg.com/nullthrows/-/nullthrows-1.1.1.tgz"
   "version" "1.1.1"
+
+"numeral@^2.0.6":
+  "integrity" "sha1-StCAk21EPCVhrtnyGX7//iX05QY="
+  "resolved" "https://registry.npmjs.org/numeral/-/numeral-2.0.6.tgz"
+  "version" "2.0.6"
 
 "ob1@0.58.0":
   "integrity" "sha512-uZP44cbowAfHafP1k4skpWItk5iHCoRevMfrnUvYCfyNNPPJd3rfDCyj0exklWi2gDXvjlj2ObsfiqP/bs/J7Q=="
@@ -4730,7 +4740,7 @@
     "prop-types" "^15.6.2"
     "scheduler" "^0.19.1"
 
-"react-is@^16.12.0", "react-is@^16.13.0", "react-is@^16.7.0", "react-is@^16.8.1", "react-is@^16.8.4":
+"react-is@^16.12.0", "react-is@^16.13.0", "react-is@^16.13.1", "react-is@^16.7.0", "react-is@^16.8.1", "react-is@^16.8.4":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
   "resolved" "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
@@ -4842,6 +4852,17 @@
     "@react-navigation/core" "^3.7.9"
     "@react-navigation/native" "^3.8.3"
 
+"react-redux@^7.2.2":
+  "integrity" "sha512-8+CQ1EvIVFkYL/vu6Olo7JFLWop1qRUeb46sGtIMDCSpgwPQq8fPLpirIB0iTqFe9XYEFPHssdX8/UwN6pAkEA=="
+  "resolved" "https://registry.npmjs.org/react-redux/-/react-redux-7.2.2.tgz"
+  "version" "7.2.2"
+  dependencies:
+    "@babel/runtime" "^7.12.1"
+    "hoist-non-react-statics" "^3.3.2"
+    "loose-envify" "^1.4.0"
+    "prop-types" "^15.7.2"
+    "react-is" "^16.13.1"
+
 "react-refresh@^0.4.0":
   "integrity" "sha512-Hwln1VNuGl/6bVwnd0Xdn1e84gT/8T9aYNL+HAKDArLCS7LWjwr7StE30IEYbIkx0Vi3vs+coQxe+SQDbGbbpA=="
   "resolved" "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.4.3.tgz"
@@ -4852,7 +4873,7 @@
   "resolved" "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz"
   "version" "0.13.4"
 
-"react@*", "react@^16.0", "react@^16.13.1", "react@^16.8.0 || ^17.0.0", "react@>=16.5.1", "react@16.13.1":
+"react@*", "react@^16.0", "react@^16.13.1", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@>=16.5.1", "react@16.13.1":
   "integrity" "sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w=="
   "resolved" "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz"
   "version" "16.13.1"
@@ -4873,6 +4894,14 @@
     "safe-buffer" "~5.1.1"
     "string_decoder" "~1.1.1"
     "util-deprecate" "~1.0.1"
+
+"redux@^2.0.0 || ^3.0.0 || ^4.0.0-0", "redux@^4.0.5":
+  "integrity" "sha512-VSz1uMAH24DM6MF72vcojpYPtrTUu3ByVWfPL1nPfVRb5mZVTve5GnNCUV53QM/BZ66xfWrm0CTWoM+Xlz8V1w=="
+  "resolved" "https://registry.npmjs.org/redux/-/redux-4.0.5.tgz"
+  "version" "4.0.5"
+  dependencies:
+    "loose-envify" "^1.4.0"
+    "symbol-observable" "^1.2.0"
 
 "regenerate-unicode-properties@^8.2.0":
   "integrity" "sha512-F9DjY1vKLo/tPePDycuH3dn9H1OTPIkVD9Kz4LODu+F2C75mgjAJ7x/gwy6ZcSNRAAkhNlJSOHRe8k3p+K9WhA=="
@@ -5462,6 +5491,11 @@
   "version" "7.2.0"
   dependencies:
     "has-flag" "^4.0.0"
+
+"symbol-observable@^1.2.0":
+  "integrity" "sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ=="
+  "resolved" "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.2.0.tgz"
+  "version" "1.2.0"
 
 "symbol-observable@1.0.1":
   "integrity" "sha1-g0D8RwLDEi310iKI+IKD9RPT/dQ="
