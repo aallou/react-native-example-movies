@@ -6,7 +6,9 @@ import {
   ActivityIndicator,
   ScrollView,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Share,
+  Platform
 } from "react-native";
 import { getFilmDetailFromApi, getImageFromApi } from "../api/themoviedb";
 import moment from "moment";
@@ -20,6 +22,8 @@ class FilmDetail extends React.Component {
       film: undefined,
       isLoading: true
     };
+    // Ne pas oublier de binder la fonction _shareFilm sinon, lorsqu'on va l'appeler depuis le headerRight de la navigation, this.state.film sera undefined et fera planter l'application
+    this._shareFilm = this._shareFilm.bind(this)
   }
 
   componentDidMount() {
@@ -29,13 +33,44 @@ class FilmDetail extends React.Component {
           film: data,
           isLoading: false
         });
-      }
+      },
+      () => { this._updateNavigationParams() }
     );
   }
 
   componentDidUpdate() {
     console.log("componentDidUpdate : ")
     console.log(this.props.favoritesFilm)
+  }
+
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state
+    // On accède à la fonction shareFilm et au film via les paramètres qu'on a ajouté à la navigation
+    if (params.film != undefined && Platform.OS === 'ios') {
+      return {
+          // On a besoin d'afficher une image, il faut donc passe par une Touchable une fois de plus
+          headerRight: <TouchableOpacity
+                          style={styles.share_touchable_headerrightbutton}
+                          onPress={() => params.shareFilm()}>
+                          <Image
+                            style={styles.share_image}
+                            source={require('../images/ic_share.png')} />
+                        </TouchableOpacity>
+      }
+    }
+  }
+
+  // Fonction pour faire passer la fonction _shareFilm et le film aux paramètres de la navigation. Ainsi on aura accès à ces données au moment de définir le headerRight
+  _updateNavigationParams() {
+    this.props.navigation.setParams({
+      shareFilm: this._shareFilm,
+      film: this.state.film
+    })
+  }
+
+  _shareFilm() {
+    const { film } = this.state
+    Share.share({ title: film.title, message: film.overview })
   }
 
   _displayLoading() {
@@ -65,6 +100,21 @@ class FilmDetail extends React.Component {
         source={sourceImage}
       />
     )
+  }
+
+  _displayFloatingActionButton() {
+    const { film } = this.state
+    if (film != undefined && Platform.OS === 'android') { // Uniquement sur Android et lorsque le film est chargé
+      return (
+        <TouchableOpacity
+          style={styles.share_touchable_floatingactionbutton}
+          onPress={() => this._shareFilm()}>
+          <Image
+            style={styles.share_image}
+            source={require('../images/ic_share.png')} />
+        </TouchableOpacity>
+      )
+    }
   }
 
   _displayFilm() {
@@ -112,6 +162,7 @@ class FilmDetail extends React.Component {
       <View style={styles.main_container}>
         {this._displayLoading()}
         {this._displayFilm()}
+        {this._displayFloatingActionButton()}
       </View>
     );
   }
@@ -166,6 +217,24 @@ const styles = StyleSheet.create({
   favorite_image: {
     width: 40,
     height: 40
+  },
+  share_touchable_floatingactionbutton: {
+    position: 'absolute',
+    width: 60,
+    height: 60,
+    right: 30,
+    bottom: 30,
+    borderRadius: 30,
+    backgroundColor: '#e91e63',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  share_image: {
+    width: 30,
+    height: 30
+  },
+  share_touchable_headerrightbutton: {
+    marginRight: 8
   }
 });
 
